@@ -89,6 +89,21 @@
 				}
 			}
 
+			$date = new XMLElement('system-date');
+		        $date->appendChild(
+		            General::createXMLDateObject(
+		                DateTimeObj::get('U', $entry->get('creation_date')),
+		                'created'
+		            )
+		        );
+		        $date->appendChild(
+		            General::createXMLDateObject(
+		                DateTimeObj::get('U', $entry->get('modification_date')),
+		                'modified'
+		            )
+		        );
+		        $entry_xml->appendChild($date);
+
 			// Add fields:
 			foreach ($data as $field_id => $values) {
 				if (empty($field_id)) continue;
